@@ -69,3 +69,51 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CF_PAGES_BRANCH: ${{ github.head_ref || github.ref_name }}
         run: npx --yes wrangler@4.118.0 pages deploy build --project-name=samesh --branch="$CF_PAGES_BRANCH" --commit-dirty=true
+
+      - name: Ensure production custom domain
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CF_PAGES_PROJECT: samesh
+          CF_PAGES_DOMAIN: samesh.au
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import urllib.error
+          import urllib.request
+
+          account = os.environ['CLOUDFLARE_ACCOUNT_ID']
+          token = os.environ['CLOUDFLARE_API_TOKEN']
+          project = os.environ['CF_PAGES_PROJECT']
+          domain = os.environ['CF_PAGES_DOMAIN']
+          base = f'https://api.cloudflare.com/client/v4/accounts/{account}/pages/projects/{project}/domains'
+          headers = {
+              'Authorization': f'Bearer {token}',
+              'Content-Type': 'application/json',
+          }
+
+          def request(method, url, body=None):
+              data = None if body is None else json.dumps(body).encode()
+              req = urllib.request.Request(url, data=data, headers=headers, method=method)
+              with urllib.request.urlopen(req, timeout=30) as response:
+                  return json.load(response)
+
+          try:
+              existing = request('GET', base).get('result') or []
+              names = {item.get('name') for item in existing if isinstance(item, dict)}
+              if domain in names:
+                  print(f'Cloudflare Pages custom domain already present: {domain}')
+              else:
+                  result = request('POST', base, {'name': domain})
+                  if not result.get('success'):
+                      raise SystemExit(f'Cloudflare API did not accept custom domain {domain}: {result}')
+                  print(f'Cloudflare Pages custom domain requested: {domain}')
+          except urllib.error.HTTPError as exc:
+              payload = exc.read().decode('utf-8', 'replace')
+              if exc.code in (409, 400) and domain in payload:
+                  print(f'Cloudflare Pages custom domain appears to already exist: {domain}')
+              else:
+                  raise SystemExit(f'Cloudflare Pages custom domain setup failed for {domain}: HTTP {exc.code} {payload}')
+          PY
