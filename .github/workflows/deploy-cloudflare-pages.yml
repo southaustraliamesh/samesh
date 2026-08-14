@@ -1,0 +1,61 @@
+name: Deploy Cloudflare Pages
+
+on:
+  push:
+    branches:
+      - main
+      - preview
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  deployments: write
+
+concurrency:
+  group: samesh-pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test-and-deploy:
+    name: Test and publish Cloudflare Pages artifact
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 24
+
+      - name: Run tests
+        run: npm test
+
+      - name: Syntax-check ES modules
+        run: |
+          node --check src/app.mjs
+          node --check src/links.mjs
+          node --check scripts/build.mjs
+
+      - name: Build static artifact
+        run: npm run build
+
+      - name: Verify artifact
+        run: |
+          test -f build/index.html
+          test -f build/assets/style.css
+          test -f build/assets/samug-logo.png
+          test -f build/assets/au-flag.png
+          test -f build/src/app.mjs
+          test -f build/deploy-info.json
+          test ! -e build/.git
+          test ! -e build/node_modules
+
+      - name: Deploy to Cloudflare Pages
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CF_PAGES_BRANCH: ${{ github.head_ref || github.ref_name }}
+        run: npx --yes wrangler@4.118.0 pages deploy build --project-name=samesh --branch="$CF_PAGES_BRANCH" --commit-dirty=true

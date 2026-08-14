@@ -1,0 +1,15 @@
+{
+  "name": "samesh-au-site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "SA Mesh landing site for South Australian MeshCore community resources.",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test",
+    "serve": "python3 -m http.server 8788"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
