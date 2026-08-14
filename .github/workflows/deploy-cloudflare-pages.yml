@@ -47,6 +47,9 @@ jobs:
           test -f build/assets/style.css
           test -f build/assets/samug-logo.png
           test -f build/assets/au-flag.png
+          test -f build/assets/favicon.ico
+          test -f build/assets/favicon-32.png
+          test -f build/assets/favicon-192.png
           test -f build/src/app.mjs
           test -f build/deploy-info.json
           test ! -e build/.git

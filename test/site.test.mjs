@@ -18,6 +18,14 @@ describe('SA Mesh landing site contract', () => {
     assert.match(html, /src\/app\.mjs/);
   });
 
+  it('uses the SA:MUG icon set for browser favicons', async () => {
+    const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+    assert.match(html, /assets\/favicon\.ico/);
+    assert.match(html, /assets\/favicon-32\.png/);
+    assert.match(html, /assets\/favicon-192\.png/);
+    assert.match(html, /assets\/favicon-180\.png/);
+  });
+
   it('keeps top nav focused on public resources', () => {
     assert.deepEqual(navLinks.map((link) => link.label), ['Wiki', 'Map', 'Dashboard', 'AU MeshCore']);
   });
