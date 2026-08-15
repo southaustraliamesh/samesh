@@ -1,7 +1,8 @@
 export const navLinks = [
   { label: 'Wiki', href: 'https://wiki.samesh.au/' },
-  { label: 'Map', href: 'https://sa.themesh.au/map' },
   { label: 'Dashboard', href: 'https://sa.themesh.au/' },
+  { label: 'Map', href: 'https://sa.themesh.au/map' },
+  { label: 'Discord', href: 'https://discord.gg/w9b7EBNC8X' },
   { label: 'AU MeshCore', href: 'https://themesh.au/' }
 ];
 
@@ -21,6 +22,11 @@ export const resourceLinks = [
     label: 'Map',
     href: 'https://sa.themesh.au/map',
     summary: 'Map view for the South Australian MeshCore network.'
+  },
+  {
+    label: 'Discord',
+    href: 'https://discord.gg/w9b7EBNC8X',
+    summary: 'Join the SA Mesh community Discord for help, coordination and corrections.'
   },
   {
     label: 'The Mesh Australia',

@@ -4,11 +4,12 @@ import { readFile } from 'node:fs/promises';
 import { navLinks, resourceLinks } from '../src/links.mjs';
 
 describe('SA Mesh landing site contract', () => {
-  it('links to wiki, map and dashboard in the preferred order', () => {
-    assert.deepEqual(resourceLinks.slice(0, 3).map((link) => link.label), ['Wiki', 'Dashboard', 'Map']);
+  it('links to public resources in the preferred order', () => {
+    assert.deepEqual(resourceLinks.slice(0, 4).map((link) => link.label), ['Wiki', 'Dashboard', 'Map', 'Discord']);
     assert.equal(resourceLinks[0].href, 'https://wiki.samesh.au/');
     assert.equal(resourceLinks[1].href, 'https://sa.themesh.au/');
     assert.equal(resourceLinks[2].href, 'https://sa.themesh.au/map');
+    assert.equal(resourceLinks[3].href, 'https://discord.gg/w9b7EBNC8X');
   });
 
   it('renders the SAMUG logo and app module', async () => {
@@ -36,6 +37,13 @@ describe('SA Mesh landing site contract', () => {
   });
 
   it('keeps top nav focused on public resources', () => {
-    assert.deepEqual(navLinks.map((link) => link.label), ['Wiki', 'Map', 'Dashboard', 'AU MeshCore']);
+    assert.deepEqual(navLinks.map((link) => link.label), ['Wiki', 'Dashboard', 'Map', 'Discord', 'AU MeshCore']);
+  });
+
+  it('left-aligns the panel logo on narrow desktop-view mobile layouts', async () => {
+    const css = await readFile(new URL('../assets/style.css', import.meta.url), 'utf8');
+    assert.match(css, /\.sa-panel-logo \{[^}]*margin:0 auto 24px 0/);
+    assert.match(css, /@media \(max-width: 980px\) \{[^}]*justify-items:start/);
+    assert.match(css, /\.sa-site-logo \{ justify-self:start; \}/);
   });
 });
