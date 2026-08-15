@@ -18,6 +18,15 @@ describe('SA Mesh landing site contract', () => {
     assert.match(html, /src\/app\.mjs/);
   });
 
+  it('uses the supplied wide SAMUG logo artwork', async () => {
+    const logo = await readFile(new URL('../assets/samug-logo.png', import.meta.url));
+    assert.equal(logo.readUInt32BE(16), 900);
+    assert.equal(logo.readUInt32BE(20), 300);
+    const css = await readFile(new URL('../assets/style.css', import.meta.url), 'utf8');
+    assert.match(css, /\.sa-logo-mark \{ width:150px/);
+    assert.match(css, /\.sa-panel-logo \{ width:min\(100%, 420px\)/);
+  });
+
   it('uses the SA:MUG icon set for browser favicons', async () => {
     const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
     assert.match(html, /assets\/favicon\.ico/);
