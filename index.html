@@ -3,40 +3,109 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SA Mesh</title>
-  <meta name="description" content="SA Mesh community hub for South Australian MeshCore wiki, dashboard and map resources.">
-  <meta property="og:title" content="SA Mesh">
-  <meta property="og:description" content="South Australian MeshCore community wiki, map and dashboard links.">
+  <title>MeshCore South Australia | SA Mesh</title>
+  <meta name="description" content="SA Mesh is the MeshCore South Australia community hub: local getting-started guides, recommended settings, Discord, map and dashboard links for South Australian MeshCore users.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://samesh.au/">
+  <meta property="og:title" content="MeshCore South Australia | SA Mesh">
+  <meta property="og:description" content="South Australian MeshCore community hub with wiki guides, local settings, dashboard, map and Discord links.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://samesh.au/">
+  <meta property="og:image" content="https://samesh.au/assets/samug-logo.png">
   <link rel="icon" href="./assets/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="./assets/favicon-192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon-180.png">
   <link rel="stylesheet" href="./assets/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "SA Mesh",
+    "alternateName": "MeshCore South Australia",
+    "url": "https://samesh.au/",
+    "description": "SA Mesh is the MeshCore South Australia community hub for local getting-started guides, recommended settings, dashboard, map and Discord links.",
+    "inLanguage": "en-AU",
+    "about": [
+      "MeshCore",
+      "South Australian MeshCore community",
+      "LoRa mesh networking"
+    ],
+    "areaServed": {
+      "@type": "AdministrativeArea",
+      "name": "South Australia"
+    },
+    "sameAs": [
+      "https://wiki.samesh.au/",
+      "https://sa.themesh.au/",
+      "https://sa.themesh.au/map",
+      "https://discord.gg/w9b7EBNC8X"
+    ]
+  }
+  </script>
 </head>
 <body class="sa-body" id="top">
   <header class="sa-site-header" aria-label="Primary navigation">
     <a class="sa-site-logo" href="#top" aria-label="SA Mesh home">
-      <img class="sa-logo-mark" src="./assets/samug-logo.png" alt="SA:MUG logo">
+      <img class="sa-logo-mark" src="./assets/samug-logo.png" alt="SA Mesh South Australia community logo">
       <span>SA Mesh</span>
     </a>
-    <nav id="top-nav" class="sa-top-nav" aria-label="Site links"></nav>
+    <nav id="top-nav" class="sa-top-nav" aria-label="Site links">
+      <a class="sa-top-nav-link primary" href="https://wiki.samesh.au/">Wiki<span aria-hidden="true">↗</span></a>
+      <a class="sa-top-nav-link" href="https://wiki.samesh.au/meshcore/south-australia">Start Here<span aria-hidden="true">↗</span></a>
+      <a class="sa-top-nav-link" href="https://sa.themesh.au/">Dashboard<span aria-hidden="true">↗</span></a>
+      <a class="sa-top-nav-link" href="https://sa.themesh.au/map">Map<span aria-hidden="true">↗</span></a>
+      <a class="sa-top-nav-link" href="https://discord.gg/w9b7EBNC8X">Discord<span aria-hidden="true">↗</span></a>
+      <a class="sa-top-nav-link" href="https://themesh.au/">AU MeshCore<span aria-hidden="true">↗</span></a>
+    </nav>
   </header>
 
   <main class="sa-layout">
     <section class="sa-hero" aria-labelledby="hero-title">
       <p class="sa-eyebrow">South Australia · MeshCore · LoRa</p>
-      <h1 id="hero-title">A community hub for <span>SA Mesh</span>.</h1>
-      <p class="sa-lede">Quick links for South Australian MeshCore users: local wiki notes, live dashboard views and the SA map. Built as a lightweight static site for Cloudflare Pages.</p>
-      <div class="sa-actions" id="primary-actions"></div>
+      <h1 id="hero-title">MeshCore South Australia <span>community hub</span></h1>
+      <p class="sa-lede">SA Mesh brings together South Australian MeshCore getting-started guides, local radio settings, dashboard and map views, and Discord support for Adelaide, the Fleurieu Peninsula and wider SA users.</p>
+      <div class="sa-actions" id="primary-actions">
+        <a class="sa-button primary" href="https://wiki.samesh.au/">Wiki<span aria-hidden="true">↗</span></a>
+        <a class="sa-button" href="https://wiki.samesh.au/meshcore/south-australia">Start Here<span aria-hidden="true">↗</span></a>
+        <a class="sa-button" href="https://sa.themesh.au/">Dashboard<span aria-hidden="true">↗</span></a>
+      </div>
     </section>
 
     <aside class="sa-panel" aria-label="SA Mesh resource links">
-      <img class="sa-panel-logo" src="./assets/samug-logo.png" alt="SA:MUG banner">
+      <img class="sa-panel-logo" src="./assets/samug-logo.png" alt="SA Mesh South Australia community banner">
       <p class="sa-eyebrow">Community resources</p>
       <h2>Find the right SA Mesh tool</h2>
-      <div id="resource-cards" class="sa-card-list"></div>
+      <div id="resource-cards" class="sa-card-list">
+        <a class="sa-card primary" href="https://wiki.samesh.au/">
+          <span class="sa-number">1</span>
+          <span><strong>Wiki</strong><small>SA Mesh knowledge base, getting-started notes and local MeshCore guidance.</small></span>
+        </a>
+        <a class="sa-card" href="https://wiki.samesh.au/meshcore/south-australia">
+          <span class="sa-number">2</span>
+          <span><strong>MeshCore South Australia</strong><small>Start here for the SA Mesh community, local settings, Discord, dashboard and map links.</small></span>
+        </a>
+        <a class="sa-card" href="https://wiki.samesh.au/meshcore/recommended-settings">
+          <span class="sa-number">3</span>
+          <span><strong>Frequency &amp; Settings</strong><small>Current South Australian MeshCore radio baseline and setup guidance.</small></span>
+        </a>
+        <a class="sa-card" href="https://sa.themesh.au/">
+          <span class="sa-number">4</span>
+          <span><strong>Dashboard</strong><small>Live South Australian MeshCore dashboard and node visibility.</small></span>
+        </a>
+        <a class="sa-card" href="https://sa.themesh.au/map">
+          <span class="sa-number">5</span>
+          <span><strong>Map</strong><small>Map view for the South Australian MeshCore network.</small></span>
+        </a>
+        <a class="sa-card" href="https://discord.gg/w9b7EBNC8X">
+          <span class="sa-number">6</span>
+          <span><strong>Discord</strong><small>Join the SA Mesh community Discord for help, coordination and corrections.</small></span>
+        </a>
+        <a class="sa-card" href="https://themesh.au/">
+          <span class="sa-number">7</span>
+          <span><strong>The Mesh Australia</strong><small>Australia-wide MeshCore community directory.</small></span>
+        </a>
+      </div>
       <p class="sa-source">Theme follows the themesh.au MeshCore family: dark panels, rounded cards, blue/cyan glow accents and compact action links. Contact @Talie5in on AU Discord for corrections.</p>
     </aside>
   </main>

@@ -1,5 +1,6 @@
 export const navLinks = [
   { label: 'Wiki', href: 'https://wiki.samesh.au/' },
+  { label: 'Start Here', href: 'https://wiki.samesh.au/meshcore/south-australia' },
   { label: 'Dashboard', href: 'https://sa.themesh.au/' },
   { label: 'Map', href: 'https://sa.themesh.au/map' },
   { label: 'Discord', href: 'https://discord.gg/w9b7EBNC8X' },
@@ -12,6 +13,16 @@ export const resourceLinks = [
     href: 'https://wiki.samesh.au/',
     summary: 'SA Mesh knowledge base, getting-started notes and local MeshCore guidance.',
     primary: true
+  },
+  {
+    label: 'MeshCore South Australia',
+    href: 'https://wiki.samesh.au/meshcore/south-australia',
+    summary: 'Start here for the SA Mesh community, local settings, Discord, dashboard and map links.'
+  },
+  {
+    label: 'Frequency & Settings',
+    href: 'https://wiki.samesh.au/meshcore/recommended-settings',
+    summary: 'Current South Australian MeshCore radio baseline and setup guidance.'
   },
   {
     label: 'Dashboard',

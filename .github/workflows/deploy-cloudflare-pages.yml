@@ -51,6 +51,8 @@ jobs:
           test -f build/assets/favicon-32.png
           test -f build/assets/favicon-192.png
           test -f build/src/app.mjs
+          test -f build/robots.txt
+          test -f build/sitemap.xml
           test -f build/deploy-info.json
           test ! -e build/.git
           test ! -e build/node_modules

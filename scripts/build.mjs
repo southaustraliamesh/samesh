@@ -5,6 +5,8 @@ await mkdir('build', { recursive: true });
 await cp('assets', 'build/assets', { recursive: true });
 await cp('src', 'build/src', { recursive: true });
 await cp('index.html', 'build/index.html');
+await cp('robots.txt', 'build/robots.txt');
+await cp('sitemap.xml', 'build/sitemap.xml');
 await writeFile('build/deploy-info.json', JSON.stringify({
   source: 'github-actions',
   repository: process.env.GITHUB_REPOSITORY ?? null,
